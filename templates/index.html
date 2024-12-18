@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Lista de Eventos</h2>
+<ul>
+    {% for event in events %}
+    <li>
+        <strong>{{ event[1] }}</strong> ({{ event[2] }})<br>
+        {{ event[3] }}<br>
+        <a href="/edit/{{ event[0] }}">Editar</a> | 
+        <a href="/delete/{{ event[0] }}" onclick="return confirm('¿Estás seguro de eliminar este evento?')">Eliminar</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
