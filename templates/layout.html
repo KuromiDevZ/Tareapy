@@ -3,31 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Eventos</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Another Movie</title>
 </head>
 <body>
     <header>
-        <h1>Gestión de Eventos</h1>
+        <h1>Another Movie</h1>
         <nav>
-            <a href="/">Inicio</a>
-            <a href="/add">Agregar Evento</a>
+            <a href="{{ url_for('index') }}">Películas Disponibles</a>
+            <a href="{{ url_for('add_movie') }}">Agregar Película</a>
+            <a href="{{ url_for('rentals') }}">Historial de Alquileres</a>
         </nav>
     </header>
     <main>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <ul>
-                {% for category, message in messages %}
-                    <li class="alert {{ category }}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {% endwith %}
         {% block content %}{% endblock %}
     </main>
-    <footer>
-        <p>&copy; 2024 - Plataforma de Eventos</p>
-    </footer>
 </body>
 </html>

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h2>Historial de Alquileres</h2>
+    <table class="table table-striped table-hover mt-4">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Película</th>
+                <th>Cliente</th>
+                <th>Fecha de Alquiler</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rental in rentals %}
+            <tr>
+                <td>{{ rental.id }}</td>
+                <td>{{ rental.title }}</td>
+                <td>{{ rental.customer_name }}</td>
+                <td>{{ rental.rental_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

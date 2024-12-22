@@ -1,14 +1,38 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 {% block content %}
-<h2>Lista de Eventos</h2>
-<ul>
-    {% for event in events %}
-    <li>
-        <strong>{{ event[1] }}</strong> ({{ event[2] }})<br>
-        {{ event[3] }}<br>
-        <a href="/edit/{{ event[0] }}">Editar</a> | 
-        <a href="/delete/{{ event[0] }}" onclick="return confirm('¿Estás seguro de eliminar este evento?')">Eliminar</a>
-    </li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <h2>Películas Disponibles</h2>
+    <table class="table table-striped table-hover mt-4">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Fecha de Estreno</th>
+                <th>Género</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in movies %}
+            <tr>
+                <td>{{ movie.id }}</td>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.release_date }}</td>
+                <td>{{ movie.genre }}</td>
+                <td>{{ movie.description }}</td>
+                <td>${{ movie.price }}</td>
+                <td>
+                    <a href="{{ url_for('rent_movie', movie_id=movie.id) }}" class="btn btn-success btn-sm">Alquilar</a>
+                    <a href="{{ url_for('edit_movie', movie_id=movie.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form method="POST" action="{{ url_for('delete_movie', movie_id=movie.id) }}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta película?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

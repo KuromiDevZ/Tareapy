@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h2>Alquilar Película</h2>
+    <p><strong>Título:</strong> {{ movie.title }}</p>
+    <p><strong>Género:</strong> {{ movie.genre }}</p>
+    <p><strong>Precio:</strong> ${{ movie.price }}</p>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="customer_name" class="form-label">Nombre del Cliente</label>
+            <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Confirmar Alquiler</button>
+    </form>
+</div>
+{% endblock %}
